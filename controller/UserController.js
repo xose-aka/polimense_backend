@@ -1,6 +1,7 @@
 const dayjs = require("dayjs");
 
 const User = new (require("../model/User").default)();
+const Riddle = new (require("../model/Riddle").default)();
 
 class UserController {
 
@@ -46,8 +47,12 @@ class UserController {
             timeSlot: req.body.timeSlot
         };
 
-        User.saveOrder(newOrder).then((response) => {
-            res.status(201).send('Created');
+        Riddle.cancelOrder(newOrder.userId).then( () => {
+            User.saveOrder(newOrder).then((response) => {
+                res.status(201).send('Created');
+            }).catch((error) => {
+                res.status(503).send(error);
+            });
         }).catch((error) => {
             res.status(503).send(error);
         });

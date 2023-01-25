@@ -64,7 +64,6 @@ class User {
 
         return new Promise((resolve, reject) => {
             appDatabase.run(sql, [ newOrder.timeId, newOrder.timeSlot, 34, newOrder.userId], function (err) {
-                console.log(err);
                 if (err){
                     reject(err);
                 }
