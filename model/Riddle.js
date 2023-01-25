@@ -49,7 +49,7 @@ class Riddle {
                         WHERE type=?;`;
         return new Promise((resolve, reject) => {
             appDatabase.all(sql, [type], (err, rows) => {
-                console.log(err)
+                console.log(rows);
                 if (err)
                     reject(err);
                 else

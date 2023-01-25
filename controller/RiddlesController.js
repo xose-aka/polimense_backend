@@ -10,14 +10,15 @@ class RiddlesController {
 
         let searchParam = req.query.type;
 
-        if (searchParam === null) {
-            Riddle.getAllFoods(searchParam).then((riddles) => {
+        if (searchParam === 'null') {
+            Riddle.getAll().then((riddles) => {
                 res.status(200).send(riddles);
             }).catch((error) => {
                 res.status(503).send(error);
             });
+
         } else {
-            Riddle.getAll().then((riddles) => {
+            Riddle.getAllFoods(searchParam).then((riddles) => {
                 res.status(200).send(riddles);
             }).catch((error) => {
                 res.status(503).send(error);
