@@ -57,6 +57,39 @@ class User {
             });
         });
     }
+
+    saveOrder(newOrder) {
+        const sql = `INSERT INTO \`order\`('time', 'time_slot', 'order_number', 'user_id')
+                                    VALUES(?, ?, ?, ?);`
+
+        return new Promise((resolve, reject) => {
+            appDatabase.run(sql, [ newOrder.timeId, newOrder.timeSlot, 34, newOrder.userId], function (err) {
+                console.log(err);
+                if (err){
+                    reject(err);
+                }
+                else {
+                    resolve(this.lastID);
+                }
+            })
+        });
+    };
+
+    pay(userId, amount) {
+        const sql = `UPDATE ${table} SET money = money + ? WHERE id=?`;
+
+
+        return new Promise((resolve, reject) => {
+            appDatabase.run(sql, [ amount, userId ], function (err) {
+                if (err){
+                    reject(err);
+                }
+                else {
+                    resolve(true);
+                }
+            })
+        });
+    };
 }
 
 exports.default = User;

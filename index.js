@@ -16,25 +16,25 @@ const port = 3001;
 
 // set up cors
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
 
 
-app.use(session({
-  secret: 'upi',
-  resave: false,
-  saveUninitialized: false,
-}));
+// app.use(session({
+//   secret: 'upi',
+//   resave: false,
+//   saveUninitialized: false,
+// }));
 
 app.use(express.json());
 
 app.use('/api', loginRoute);
 app.use('/api/foods', riddlesRoute);
 app.use('/api/orders', ordersRoute);
-app.use('/api/times', ordersRoute);
+app.use('/api/times', timesRoute);
 app.use('/api/users', usersRoute);
 
 // activate the server

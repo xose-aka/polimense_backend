@@ -37,7 +37,31 @@ class UserController {
         }).catch((error) => {
             res.status(503).send(error);
         });
+    }
 
+    saveOrder(req, res) {
+        const newOrder = {
+            userId: req.body.userId,
+            timeId: req.body.timeId,
+            timeSlot: req.body.timeSlot
+        };
+
+        User.saveOrder(newOrder).then((response) => {
+            res.status(201).send('Created');
+        }).catch((error) => {
+            res.status(503).send(error);
+        });
+    }
+
+    pay(req, res) {
+        const userId = req.body.userId;
+        const amount = req.body.amount;
+
+        User.pay(userId, amount).then((response) => {
+            res.status(200).send('Updated');
+        }).catch((error) => {
+            res.status(503).send(error);
+        });
     }
 }
 exports.default = UserController;
