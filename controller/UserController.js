@@ -58,6 +58,21 @@ class UserController {
         });
     }
 
+    edit(req, res) {
+        const userId = req.body.userId;
+
+        const data = {
+            email: req.body.email,
+            phone: req.body.phone
+        };
+
+        User.edit(userId, data).then((response) => {
+            res.status(200).send('Updated');
+        }).catch((error) => {
+            res.status(500).send(error);
+        });
+    }
+
     pay(req, res) {
         const userId = req.body.userId;
         const amount = req.body.amount;

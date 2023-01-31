@@ -89,6 +89,21 @@ class User {
             })
         });
     };
+
+    edit(userId, data) {
+        const sql = `UPDATE ${table} SET email = ?, phone = ? WHERE id=?`;
+
+        return new Promise((resolve, reject) => {
+            appDatabase.run(sql, [ data.email, data.phone, userId ], function (err) {
+                if (err){
+                    reject(err);
+                }
+                else {
+                    resolve(true);
+                }
+            })
+        });
+    };
 }
 
 exports.default = User;

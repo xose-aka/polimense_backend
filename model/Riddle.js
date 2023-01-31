@@ -49,7 +49,6 @@ class Riddle {
                         WHERE type=?;`;
         return new Promise((resolve, reject) => {
             appDatabase.all(sql, [type], (err, rows) => {
-                console.log(rows);
                 if (err)
                     reject(err);
                 else
@@ -77,7 +76,6 @@ class Riddle {
 
         return new Promise((resolve, reject) => {
             appDatabase.run(sql, [userId], function (err) {
-                console.log(userId);
 
                 if (err){
                     reject(err);

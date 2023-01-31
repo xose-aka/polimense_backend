@@ -8,6 +8,8 @@ router.get('/:userId(\\d+)', UserController.getUser);
 
 router.post('/save-order', UserController.saveOrder);
 
+router.put('/edit', UserController.edit);
+
 router.put('/pay', UserController.pay);
 
 module.exports = router;

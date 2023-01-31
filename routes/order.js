@@ -6,8 +6,6 @@ const RiddlesController = new (require('../controller/RiddlesController').defaul
 
 router.delete('/:userId(\\d+)', RiddlesController.cancelOrder);
 
-router.get('/:riddleId(\\d+)', RiddlesController.getRiddle);
-
 router.get('/:riddleId(\\d+)/replies', isLoggedIn, RiddlesController.getRiddleReplies);
 
 router.post('/save', isLoggedIn, RiddlesController.save);
